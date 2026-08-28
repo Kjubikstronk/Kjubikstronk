@@ -1,6 +1,6 @@
 # Miodrag Obradovic
 
-Informatics at HTL Wien West, now at FH Technikum Wien.
+Informatics at HTL Wien West and FH Technikum Wien, in Vienna.
 
 ## What I'm building
 
