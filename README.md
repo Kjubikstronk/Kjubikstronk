@@ -30,6 +30,10 @@ projects check into their own repos and working out why each one is broken.
 - [#19894](https://github.com/prettier/prettier/pull/19894): the same instability in
   sequence expressions. Babel starts a `SequenceExpression` at the parentheses of its
   first element, so dropping redundant parens moved the node's start past the comment.
+- [#19930](https://github.com/prettier/prettier/pull/19930): a comment at the end of
+  a parenthesized arrow chain escaped the parentheses on the next format. The chain
+  walker only stopped at an expression statement, so nothing inside a `var`
+  declaration ever found a statement to attach the comment to.
 - [#19880](https://github.com/prettier/prettier/pull/19880): range formatting reached
   past the node you selected
 - [#19849](https://github.com/prettier/prettier/pull/19849): escaped characters in
