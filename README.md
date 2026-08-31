@@ -30,6 +30,10 @@ projects check into their own repos and working out why each one is broken.
 - [#19894](https://github.com/prettier/prettier/pull/19894): the same instability in
   sequence expressions. Babel starts a `SequenceExpression` at the parentheses of its
   first element, so dropping redundant parens moved the node's start past the comment.
+- [#19939](https://github.com/prettier/prettier/pull/19939): an own-line comment before a
+  `satisfies` or `as` type got pulled onto the line above, then moved again on the next
+  format, so the file never settled. Two rounds of review on this one, including reverting
+  a commit I had been too clever with.
 - [#19930](https://github.com/prettier/prettier/pull/19930): a comment at the end of
   a parenthesized arrow chain escaped the parentheses on the next format. The chain
   walker only stopped at an expression statement, so nothing inside a `var`
@@ -55,7 +59,8 @@ projects check into their own repos and working out why each one is broken.
 - [#17742](https://github.com/withastro/astro/pull/17742): a trailing slash disappeared
   when an injected `.html` was stripped, breaking routes
 
-Open PRs at [hono](https://github.com/honojs/hono),
+Open PRs at [babel](https://github.com/babel/babel),
+[hono](https://github.com/honojs/hono),
 [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint),
 [marked](https://github.com/markedjs/marked),
 [happy-dom](https://github.com/capricorn86/happy-dom),
