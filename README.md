@@ -59,7 +59,11 @@ projects check into their own repos and working out why each one is broken.
 - [#17742](https://github.com/withastro/astro/pull/17742): a trailing slash disappeared
   when an injected `.html` was stripped, breaking routes
 
-Open PRs at [babel](https://github.com/babel/babel),
+Open PRs at [playwright](https://github.com/microsoft/playwright),
+[babel](https://github.com/babel/babel),
+[supabase](https://github.com/supabase/postgres-meta),
+[fastify](https://github.com/fastify/fastify),
+[fresh](https://github.com/freshframework/fresh),
 [hono](https://github.com/honojs/hono),
 [typescript-eslint](https://github.com/typescript-eslint/typescript-eslint),
 [marked](https://github.com/markedjs/marked),
