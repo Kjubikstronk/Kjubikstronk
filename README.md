@@ -101,8 +101,5 @@ end behind Docker Compose. My diploma project, so the repo stays private.
 
 JavaScript, TypeScript, Node, Python, Java and Spring. English or German.
 
-I take on contained bug fixes, scoped and agreed before I start, and only once I
-have seen a reproduction. If I cannot reproduce it, you owe me nothing, because
-I will not have done anything worth billing for.
-
-Send me the repository and the reproduction: **mck097@gmail.com**
+Available for bug fixes and debugging work. Send me the repository and a way to
+reproduce it: **mck097@gmail.com**
