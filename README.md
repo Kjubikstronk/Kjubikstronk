@@ -101,7 +101,7 @@ end behind Docker Compose. My diploma project, so the repo stays private.
 
 JavaScript, TypeScript, Node, Python, Java and Spring. English or German.
 
-I take contained bug fixes from 60 EUR, agreed before I start and only once I
+I take on contained bug fixes, scoped and agreed before I start, and only once I
 have seen a reproduction. If I cannot reproduce it, you owe me nothing, because
 I will not have done anything worth billing for.
 
