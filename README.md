@@ -53,11 +53,35 @@ projects check into their own repos and working out why each one is broken.
 - [#4246](https://github.com/jsdom/jsdom/pull/4246): `getElementsByTagName` kept
   lowercasing after its root moved to an XML document, because the memoised collection
   outlived the document type it was built for
+- [#4244](https://github.com/jsdom/jsdom/pull/4244): filling in the text of an
+  already-connected `<script>` never ran it, because jsdom was missing the DOM spec's
+  children-changed steps for script elements. Several scripts inserted together could
+  then run out of order. Removal, and an element still mid-parse, both opt out, matching
+  how style elements already work.
+
+**[marked](https://github.com/markedjs/marked)**, the markdown parser
+
+- [#4053](https://github.com/markedjs/marked/pull/4053): autolinks and inline links
+  resolve character references differently under CommonMark, but marked escaped both
+  destinations the same way, so fixing one broke the other. Autolinks now get their
+  own escaping path.
+- [#4074](https://github.com/markedjs/marked/pull/4074): a fenced code block indented
+  less than its own fence kept all of its indentation instead of losing what CommonMark
+  says it should, because the strip only fired for lines indented at least as far as
+  the fence.
 
 **[astro](https://github.com/withastro/astro)**, the web framework
 
 - [#17742](https://github.com/withastro/astro/pull/17742): a trailing slash disappeared
   when an injected `.html` was stripped, breaking routes
+
+**[supabase-js](https://github.com/supabase/supabase-js)**, the JS client for Supabase
+
+- [#2641](https://github.com/supabase/supabase-js/pull/2641): a failed passkey
+  registration cleans up after itself by unenrolling the same-named factor, but the
+  lookup matched an already-verified factor instead of the unverified one the failed
+  attempt left behind. A failed re-registration could delete a passkey that already
+  worked. One line, inverted condition.
 
 Open PRs at [playwright](https://github.com/microsoft/playwright),
 [babel](https://github.com/babel/babel),
@@ -65,10 +89,12 @@ Open PRs at [playwright](https://github.com/microsoft/playwright),
 [fastify](https://github.com/fastify/fastify),
 [fresh](https://github.com/freshframework/fresh),
 [hono](https://github.com/honojs/hono),
-[typescript-eslint](https://github.com/typescript-eslint/typescript-eslint),
 [marked](https://github.com/markedjs/marked),
 [happy-dom](https://github.com/capricorn86/happy-dom),
+[mermaid](https://github.com/mermaid-js/mermaid),
 [vite](https://github.com/vitejs/vite), [axios](https://github.com/axios/axios),
+[undici](https://github.com/nodejs/undici),
+[httpie](https://github.com/httpie/cli),
 [date-fns](https://github.com/date-fns/date-fns) and
 [storybook](https://github.com/storybookjs/storybook).
 
