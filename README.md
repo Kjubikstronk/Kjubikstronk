@@ -83,21 +83,6 @@ projects check into their own repos and working out why each one is broken.
   attempt left behind. A failed re-registration could delete a passkey that already
   worked. One line, inverted condition.
 
-Open PRs at [playwright](https://github.com/microsoft/playwright),
-[babel](https://github.com/babel/babel),
-[supabase](https://github.com/supabase/postgres-meta),
-[fastify](https://github.com/fastify/fastify),
-[fresh](https://github.com/freshframework/fresh),
-[hono](https://github.com/honojs/hono),
-[marked](https://github.com/markedjs/marked),
-[happy-dom](https://github.com/capricorn86/happy-dom),
-[mermaid](https://github.com/mermaid-js/mermaid),
-[vite](https://github.com/vitejs/vite), [axios](https://github.com/axios/axios),
-[undici](https://github.com/nodejs/undici),
-[httpie](https://github.com/httpie/cli),
-[date-fns](https://github.com/date-fns/date-fns) and
-[storybook](https://github.com/storybookjs/storybook).
-
 ## What I'm building
 
 **[raspisentry](https://github.com/Kjubikstronk/raspisentry)**, a Raspberry Pi that
