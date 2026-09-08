@@ -24,6 +24,11 @@ projects check into their own repos and working out why each one is broken.
 
 **[prettier](https://github.com/prettier/prettier)**, the code formatter
 
+- [#19908](https://github.com/prettier/prettier/pull/19908): a code block inside an
+  `md` template is fenced with `~`, and the fence has to be longer than any run of `~`
+  in its value. The escaped backticks of a block nested one level deeper turn into
+  tildes when they are printed, so the run they end up occupying was never counted and
+  the outer fence failed to clear the inner one.
 - [#19893](https://github.com/prettier/prettier/pull/19893): `assigned = (a = c /* comment */)`
   moved the comment every time you formatted it, so the file never settled. The fix
   needed the ancestor chain that the comment attacher already built and then threw away.
@@ -69,6 +74,10 @@ projects check into their own repos and working out why each one is broken.
   less than its own fence kept all of its indentation instead of losing what CommonMark
   says it should, because the strip only fired for lines indented at least as far as
   the fence.
+- [#4073](https://github.com/markedjs/marked/pull/4073): `Renderer.code` appended a
+  newline unconditionally, so an empty fence rendered as a code element containing a
+  blank line instead of nothing at all. The lexer was already right, the token text
+  was empty the whole time.
 
 **[astro](https://github.com/withastro/astro)**, the web framework
 
