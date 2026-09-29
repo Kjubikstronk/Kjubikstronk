@@ -7,20 +7,13 @@ fail in CI, or worked last week and nobody admits to touching anything. Almost
 every fix below is in a codebase I had never opened before, which turns out to
 be most of the job.
 
+Some of it has shipped with my name on it: [jsdom 30.1.0](https://github.com/jsdom/jsdom/releases/tag/v30.1.0),
+[babel 8.0.5](https://github.com/babel/babel/releases/tag/v8.0.5) and astro 7.2.4.
+
 ## Open source
 
 Merged fixes, mostly found by reading the lists of known-broken tests that
 projects check into their own repos and working out why each one is broken.
-
-**[home-assistant/core](https://github.com/home-assistant/core)**, the home automation platform
-
-- [#180532](https://github.com/home-assistant/core/pull/180532): a test had been
-  reporting as expected-to-fail for months after the bug it guarded was already
-  gone. It used the imperative `pytest.xfail()`, which aborts before the
-  assertion instead of running it, so unlike the marker it can never report an
-  unexpected pass. An async migration had fixed the bug and removed the
-  equivalent markers from a neighbouring file; this one survived because nothing
-  could see it. Six parameter sets went back to actually asserting.
 
 **[prettier](https://github.com/prettier/prettier)**, the code formatter
 
@@ -64,12 +57,30 @@ projects check into their own repos and working out why each one is broken.
   then run out of order. Removal, and an element still mid-parse, both opt out, matching
   how style elements already work.
 
+**[babel](https://github.com/babel/babel)**, the JavaScript compiler
+
+- [#18214](https://github.com/babel/babel/pull/18214): an optimisation that collapses a
+  destructuring declaration and its emptiness check into one statement only looked at the
+  shape of the two statements, not at which variable the check was about. So
+  `const [{ a }, {}] = [x, y]` lost the `a` binding and checked the wrong value, and
+  `const [{}] = [null, {}]` stopped throwing where native code does.
+
 **[marked](https://github.com/markedjs/marked)**, the markdown parser
 
 - [#4053](https://github.com/markedjs/marked/pull/4053): autolinks and inline links
   resolve character references differently under CommonMark, but marked escaped both
   destinations the same way, so fixing one broke the other. Autolinks now get their
   own escaping path.
+- [#4080](https://github.com/markedjs/marked/pull/4080): a line indented with two spaces
+  and a tab kept the tab as code. The indent regex tried the spaces branch first and
+  alternation takes the first match, so the tab branch only ever ran on lines with no
+  leading space at all. Swapping the two branches fixed it.
+- [#4075](https://github.com/markedjs/marked/pull/4075): the indentation after a hard line
+  break was rendered instead of dropped. marked's own test suite couldn't see it, because
+  its comparison ignores whitespace, which is why the spec examples had been passing all
+  along.
+- [#4076](https://github.com/markedjs/marked/pull/4076): numeric character references
+  like `&#35;` went out exactly as written instead of as the character they name.
 - [#4074](https://github.com/markedjs/marked/pull/4074): a fenced code block indented
   less than its own fence kept all of its indentation instead of losing what CommonMark
   says it should, because the strip only fired for lines indented at least as far as
@@ -79,10 +90,29 @@ projects check into their own repos and working out why each one is broken.
   blank line instead of nothing at all. The lexer was already right, the token text
   was empty the whole time.
 
+**[fastify](https://github.com/fastify/fastify)**, the Node web framework
+
+- [#7001](https://github.com/fastify/fastify/pull/7001): `reply.compileSerializationSchema(schema)`
+  handed a custom serializer compiler `null` for the status code and content type it was
+  never given, where the types, the docs and the neighbouring `serializeInput` path all
+  said `undefined`. Dropping the two default values was the whole fix.
+
+**[home-assistant/core](https://github.com/home-assistant/core)**, the home automation platform
+
+- [#180532](https://github.com/home-assistant/core/pull/180532): a test had been
+  reporting as expected-to-fail for months after the bug it guarded was already
+  gone. It used the imperative `pytest.xfail()`, which aborts before the
+  assertion instead of running it, so unlike the marker it can never report an
+  unexpected pass. An async migration had fixed the bug and removed the
+  equivalent markers from a neighbouring file; this one survived because nothing
+  could see it. Six parameter sets went back to actually asserting.
+
 **[astro](https://github.com/withastro/astro)**, the web framework
 
-- [#17742](https://github.com/withastro/astro/pull/17742): a trailing slash disappeared
-  when an injected `.html` was stripped, breaking routes
+- [#17742](https://github.com/withastro/astro/pull/17742): with `build.format: 'preserve'`
+  and `trailingSlash: 'always'`, stripping the `.html` astro injects also dropped the
+  trailing slash the route pattern needed, so dynamic routes failed the build with
+  `Missing parameter`
 
 **[supabase-js](https://github.com/supabase/supabase-js)**, the JS client for Supabase
 
