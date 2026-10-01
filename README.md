@@ -8,7 +8,7 @@ every fix below is in a codebase I had never opened before, which turns out to
 be most of the job.
 
 Some of it has shipped with my name on it: [jsdom 30.1.0](https://github.com/jsdom/jsdom/releases/tag/v30.1.0),
-[babel 8.0.5](https://github.com/babel/babel/releases/tag/v8.0.5) and astro 7.2.4.
+[babel 8.0.5](https://github.com/babel/babel/releases/tag/v8.0.5) and [astro 7.2.4](https://github.com/withastro/astro/releases/tag/astro%407.2.4).
 
 ## Open source
 
