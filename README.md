@@ -15,6 +15,14 @@ Some of it has shipped with my name on it: [jsdom 30.1.0](https://github.com/jsd
 Merged fixes, mostly found by reading the lists of known-broken tests that
 projects check into their own repos and working out why each one is broken.
 
+**[node](https://github.com/nodejs/node)**, the JavaScript runtime
+
+- [#66421](https://github.com/nodejs/node/pull/66421): inspecting a detached `DataView`
+  left the indentation raised for everything printed after it in the same call.
+  `formatExtraProperties()` bumped the indent level before reading the property, and a
+  detached view's getters throw, so the level never came back down. Reading the value
+  first fixed it. Found while porting the same inspect code to Deno.
+
 **[prettier](https://github.com/prettier/prettier)**, the code formatter
 
 - [#19908](https://github.com/prettier/prettier/pull/19908): a code block inside an
