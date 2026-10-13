@@ -22,6 +22,11 @@ projects keep in their own repos.
   printed after it in the same call came out too far right. I found it while porting
   the same code to Deno.
 
+**[hono](https://github.com/honojs/hono)**
+
+- [#5243](https://github.com/honojs/hono/pull/5243): a wildcard in the middle of a path, like
+  `/x*/y`, only worked in one of hono's four routers. Now all four agree. It's in v5.
+
 **[prettier](https://github.com/prettier/prettier)**
 
 - [#19893](https://github.com/prettier/prettier/pull/19893), [#19894](https://github.com/prettier/prettier/pull/19894),
